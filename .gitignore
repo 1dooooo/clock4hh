@@ -4,3 +4,5 @@ build.sh
 test.py
 clock.log
 *.log
+/__pycache__
+__pycache__/

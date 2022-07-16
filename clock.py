@@ -9,7 +9,7 @@ toast = ToastNotifier()
 app = App()
 sche = scheduler.get_sched()
 
-INTERVAL_TIME_SECONDS = 60
+INTERVAL_TIME_SECONDS = 60*30
 
 time_to_rest = INTERVAL_TIME_SECONDS
 

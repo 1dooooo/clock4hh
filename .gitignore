@@ -2,3 +2,5 @@ build.sh
 /.vscode
 .vscode/
 test.py
+clock.log
+*.log

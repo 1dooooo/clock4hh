@@ -1,1 +1,4 @@
 build.sh
+/.vscode
+.vscode/
+test.py

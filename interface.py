@@ -2,8 +2,7 @@ from datetime import datetime
 import tkinter
 import tkinter.messagebox
 import customtkinter
-import constant
-from time_2_select_2 import datepicker,Calendar
+from time_2_select_2 import Calendar
 from logger import logger
 
 customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"

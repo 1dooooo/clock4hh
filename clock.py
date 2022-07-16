@@ -2,7 +2,6 @@ from interface import App
 import scheduler
 from logger import logger
 from datetime import datetime
-import tkinter.messagebox as msgbox
 from win10toast import ToastNotifier
 
 toast = ToastNotifier()

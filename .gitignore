@@ -8,3 +8,4 @@ clock.log
 __pycache__/
 /target
 target/
+clock.spec

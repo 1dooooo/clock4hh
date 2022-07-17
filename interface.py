@@ -51,15 +51,6 @@ class App(customtkinter.CTk):
                                               text_font=("Roboto Medium", -16))  # font name and size in px
         self.label_1.grid(row=1, column=0, pady=10, padx=10)
 
-        # combobox_var = customtkinter.StringVar(value="Right now")  # set initial value
-        # self.combobox_1 = customtkinter.CTkComboBox(master=self.frame_left,
-        #                              values=constant.ALL_MINUTE_LIST,
-        #                              command=self.combobox_callback,
-        #                              variable=combobox_var)
-        # self.combobox_1.grid(row=2, column=0, pady=10, padx=20)
-        # obj=datepicker(self.frame_left,(2,0))		#初始化类为对象
-        # startstamp1=obj.start_date.get()	#获取开始时期
-        # endstamp1=obj.end_date.get()
 
         self.start_date=customtkinter.StringVar()		#开始日期
         self.end_date=customtkinter.StringVar()	
@@ -116,10 +107,10 @@ class App(customtkinter.CTk):
         # self.frame_right.rowconfigure(7, weight=1)
         self.frame_right.columnconfigure((0, 1), weight=1)
 
-        self.frame_info = customtkinter.CTkFrame(master=self.frame_right)
-        self.frame_info.grid(row=0, column=0, columnspan=2, rowspan=4, pady=20, padx=20, sticky="nsew")
 
         # ============ frame_info ============
+        self.frame_info = customtkinter.CTkFrame(master=self.frame_right)
+        self.frame_info.grid(row=0, column=0, columnspan=2, rowspan=4, pady=20, padx=20, sticky="nsew")
 
         # configure grid layout (1x1)
         self.frame_info.rowconfigure(0, weight=1)
@@ -130,7 +121,6 @@ class App(customtkinter.CTk):
                                                    height=1000,
                                                    width=1000,
                                                    fg_color=("white", "gray38"),  # <- custom tuple-color
-                                                   justify=tkinter.LEFT,
                                                    anchor=tkinter.CENTER,
                                                    text_font=('黑体',30, 'bold'),
                                                    )
@@ -139,15 +129,36 @@ class App(customtkinter.CTk):
         self.progressbar = customtkinter.CTkProgressBar(master=self.frame_info)
         self.progressbar.grid(row=1, column=0, sticky="ew", padx=15, pady=15)
 
-        # ============ frame_right ============
 
-        self.slider_1 = customtkinter.CTkSlider(master=self.frame_right,
-                                                from_=0,
-                                                to=1,
-                                                number_of_steps=100,
+       # ============ frame_intervel ============
+        self.frame_intervel = customtkinter.CTkFrame(master=self.frame_right)
+        self.frame_intervel.grid(row=4, column=0, columnspan=2, rowspan=4, pady=20, padx=20, sticky="nsew")
+
+
+        # configure grid layout (1x1)
+        self.frame_intervel.rowconfigure(0, weight=1)
+        self.frame_intervel.columnconfigure(0, weight=1)
+        self.frame_intervel.columnconfigure(1, weight=9)
+
+
+        self.slider_1 = customtkinter.CTkSlider(master=self.frame_intervel,
+                                                progress_color="pink",
+                                                from_=1,
+                                                to=121,
+                                                number_of_steps=120,
                                                 button_corner_radius=5,
-                                                command=self.progressbar.set)
-        # self.slider_1.grid(row=4, column=0, columnspan=2, pady=10, padx=28, sticky="we")
+                                                command=lambda value:self.label_intervel.set_text(" %03d" % int(value) + "分 "),
+                                                )
+        self.slider_1.grid(row=0, column=1, pady=15, padx=15, sticky="we")
+
+        self.label_intervel = customtkinter.CTkLabel(master=self.frame_intervel,
+                                                   anchor=tkinter.CENTER,
+                                                   width = 50,
+                                                   text="030分 ",
+                                                   text_font=('黑体',10, 'bold'),
+                                                   corner_radius=10,
+                                                   )
+        self.label_intervel.grid(row=0, column=0, padx=5, pady=5, sticky="nswe")
 
         # self.radio_var = tkinter.IntVar(value=0)
 
@@ -225,7 +236,7 @@ class App(customtkinter.CTk):
     def button_event(self):
         logger.info("job init...")
         self.job_callback()
-
+    
     def change_mode(self):
         if self.switch_2.get() == 1:
             customtkinter.set_appearance_mode("dark")
@@ -237,7 +248,6 @@ class App(customtkinter.CTk):
     
     def updatte_process(self, progress_percent, label_text):
         self.progressbar.set(progress_percent)
-        self.slider_1.set(progress_percent)
         self.label_info_1.set_text(label_text)
 
 

@@ -36,9 +36,18 @@ def fix_first_rest_time():
     time_difference = time_difference%INTERVAL_TIME_SECONDS
     global time_to_rest
     time_to_rest=INTERVAL_TIME_SECONDS-time_difference
+    logger.debug("修正首次休息剩余时间为%s" % str(time_to_rest))
 
+
+
+def reset_interval_time():
+    global INTERVAL_TIME_SECONDS
+    INTERVAL_TIME_SECONDS = int(app.slider_1.get()) * 60
+    logger.info("reset interval time to %s" % time_to_rest)
+    
 
 def start_sche():
+    reset_interval_time()
     fix_first_rest_time()
     sche.remove_all_jobs()
     sche.add_job(start_rest, 'interval', seconds=INTERVAL_TIME_SECONDS, start_date=app.start_date.get(), end_date=app.end_date.get())

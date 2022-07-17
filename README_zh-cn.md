@@ -1,6 +1,6 @@
 # clock4hh
 
-[English](./README)
+[English](./README.md)
 
 
 #### description

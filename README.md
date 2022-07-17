@@ -1,6 +1,6 @@
 # clock4h
 
-[中文](./README_zh-cn)
+[中文](./README_zh-cn.md)
 
 #### description
 this is a `have a rest` remind clock , use `apscheduler` and `customtkinter` complete, also inside a time-select component based on
